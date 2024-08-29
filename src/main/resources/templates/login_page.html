@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Login Page</title>
-  <link rel="stylesheet" href="/css/style.css"> <!-- Updated path -->
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div class="form">
-  <form>
+  <form method="post" action="/login" th:object="${loginRequest}">
     <h2>Login</h2>
     <div class="input-box">
       <i class="fa fa-user" aria-hidden="true"></i>

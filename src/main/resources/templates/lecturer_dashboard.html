@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecturer Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <header class="d-flex justify-content-between align-items-center my-3">
+        <h1>Welcome, Lecturer</h1>
+        <nav>
+            <a href="#">Home</a> |
+            <a href="/lecturer/create-test?lecturerId=${lecturerId}" class="btn btn-primary">Create Test</a> |
+            <a href="/lecturer/dashboard?lecturerId=${lecturerId}">Manage Tests</a> |
+            <a href="/lecturer/view-grades?testId=1">View Grades</a> |
+            <a href="#">Profile</a> |
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <div class="row">
+        <!-- Create Test Section -->
+        <div class="col-md-4">
+            <h3>Create Test</h3>
+            <a href="/lecturer/create-test?lecturerId=${lecturerId}" class="btn btn-primary">Create New Test</a>
+        </div>
+
+        <!-- Manage Tests Section -->
+        <div class="col-md-4">
+            <h3>Manage Tests</h3>
+            <ul class="list-group">
+                <li th:each="test : ${tests}" class="list-group-item">
+                    <span th:text="${test.name}"></span>
+                    <a th:href="'/lecturer/edit-test/' + ${test.id} + '?lecturerId=' + ${lecturerId}">Edit</a> |
+                    <a th:href="'/lecturer/delete-test/' + ${test.id} + '?lecturerId=' + ${lecturerId}">Delete</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- View Grades Section -->
+        <div class="col-md-4">
+            <h3>View Grades</h3>
+            <select class="form-control">
+                <option>Select Course</option>
+                <option th:each="course : ${courses}" th:text="${course}"></option>
+            </select>
+            <ul class="list-group mt-2">
+                <li th:each="grade : ${grades}" class="list-group-item">
+                    <span th:text="${grade.test.name} + ' - ' + ${grade.student.name}"></span>
+                    <span th:text="'Score: ' + ${grade.score}"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Statistics Section -->
+        <div class="col-md-6">
+            <h3>Test Performance Overview</h3>
+            <div id="performanceChart"></div>
+            <!-- Insert chart here (e.g., using Chart.js) -->
+        </div>
+
+        <!-- Feedback Control Section -->
+        <div class="col-md-6">
+            <h3>Feedback Control</h3>
+            <label>
+                <!-- Additional feedback settings can go here -->
+            </label>
+        </div>
+    </div>
+</div>
+
+<footer class="mt-5">
+    <p>&copy; 2024 Assessment System | <a href="#">Help</a> | <a href="#">Contact Support</a> | <a href="#">Terms of Service</a></p>
+</footer>
+</body>
+</html>

@@ -1,4 +1,5 @@
 package com.examprojects.examprojects.model;
+
 import jakarta.persistence.*;
 import java.util.Date;
 
@@ -18,7 +19,7 @@ public class testModel {
 
     @ManyToOne
     @JoinColumn(name = "lecturer_id")
-    private lecturerModel lecturer;
+    private lecturerModel lecturer; // Ensure this is correctly set up
 
     // Getters and Setters
 
@@ -78,4 +79,3 @@ public class testModel {
         this.lecturer = lecturer;
     }
 }
-

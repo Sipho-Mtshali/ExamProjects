@@ -33,13 +33,13 @@ public class lecturerController {
         return "lecturer_dashboard";
     }
 
-    @GetMapping("/create-test")
+    @GetMapping("/create_test")
     public String createTestForm(Model model) {
         model.addAttribute("test", new testModel());
-        return "create-test";
+        return "create_test";
     }
 
-    @PostMapping("/create-test")
+    @PostMapping("/create_test")
     public String createTest(@ModelAttribute testModel test, @RequestParam Long lecturerId, Model model) {
         lecturerModel lecturer = lecturerService.getLecturerById(lecturerId);
         test.setLecturer(lecturer);
